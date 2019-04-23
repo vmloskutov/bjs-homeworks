@@ -50,6 +50,16 @@ function calculateAverageRating(){
 }
 
 function getAverageMark(marks){
-    // код для задачи №3 писать здесь
-    //return averageMark;
+    let sum = 0;
+    let amount = marks.length;
+    if (amount >= 5) {
+      console.log("Оценок больше 5, будут считаться только первые 5");
+      amount = 5;
+    }
+
+    for (let i = 0; i < amount; i++) {
+      sum += marks[i];
+    }
+    let averageMark = sum / amount;
+    return averageMark;
 }
