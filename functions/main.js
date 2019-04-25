@@ -41,21 +41,20 @@ function showSolutionsMessage(a, b, c) {
   }
 }
 
+function findAverage(subject) {
+  let summ = 0;
+  for (let i = 0; i < subject.length; i++){
+    summ += subject[i];
+  }
+  return summ / subject.length
+}
 
 function getAverageScore(data) {
-  let student = new Object();
-  for (let subject in data) {
-    let summ = 0;
-    for (let i = 0; i < data[subject].length; i++){
-      summ += data[subject][i];
-    }
-    student[subject] = summ / data[subject].length;
-  }
-  // В задание не указано, как должна считаться средняя по всем предметам,
-  // поэтому я беру среднюю оценку от средних по всем предметам.
   let summ = 0;
   let count = 0;
-  for (let subject in student) {
+  let student = new Object();
+  for (let subject in data) {
+    student[subject] = findAverage(data[subject]);
     summ += student[subject];
     count++;
   }
@@ -63,17 +62,21 @@ function getAverageScore(data) {
   return(student)
 }
 
+function declassify(secret){
+  if (secret === 0)
+    return "Родриго";
+  else return "Эмильо";
+}
+
 function getPersonData(secretData) {
+
   secretData.firstName = secretData.aaa;
   delete secretData.aaa;
   secretData.lastName = secretData.bbb;
   delete secretData.bbb;
+
   for (let i in secretData) {
-    if (secretData[i] === 0) {
-      secretData[i] = "Родриго";
-  } else if (secretData[i] === 1) {
-      secretData[i] = "Эмильо";
-  }
+    secretData[i] = declassify(secretData[i]);
   }
   return secretData;
 }
