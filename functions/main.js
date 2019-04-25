@@ -1,3 +1,5 @@
+"use strict"
+
 function getSolutions(a, b, c) {
   let D = b ** 2 - 4 * a * c;
   if (D < 0)
@@ -37,4 +39,26 @@ function showSolutionsMessage(a, b, c) {
   } else {
     console.log("Уравнение не имеет вещественных корней");
   }
+}
+
+
+function getAverageScore(data) {
+  let student = new Object();
+  for (let subject in data) {
+    let summ = 0;
+    for (let i = 0; i < data[subject].length; i++){
+      summ += data[subject][i];
+    }
+    student[subject] = summ / data[subject].length;
+  }
+  // В задание не указано, как должна считаться средняя по всем предметам,
+  // поэтому я беру среднюю оценку от средних по всем предметам.
+  let summ = 0;
+  let count = 0;
+  for (let subject in student) {
+    summ += student[subject];
+    count++;
+  }
+  student.average = summ / count;
+  return(student)
 }
