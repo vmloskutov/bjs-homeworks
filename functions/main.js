@@ -62,3 +62,18 @@ function getAverageScore(data) {
   student.average = summ / count;
   return(student)
 }
+
+function getPersonData(secretData) {
+  secretData.firstName = secretData.aaa;
+  delete secretData.aaa;
+  secretData.lastName = secretData.bbb;
+  delete secretData.bbb;
+  for (let i in secretData) {
+    if (secretData[i] === 0) {
+      secretData[i] = "Родриго";
+  } else if (secretData[i] === 1) {
+      secretData[i] = "Эмильо";
+  }
+  }
+  return secretData;
+}
