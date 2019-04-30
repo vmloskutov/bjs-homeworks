@@ -57,6 +57,15 @@ function sayHello() {
 }
 
 function getGreeting(name) {
-    // код для задачи №2 писать здесь
-    //return greeting;
+  //Странная задача, как может быть три разных случая ввода для пустой строки??
+  let greeting;
+    if (name.length === 0 || name == undefined) { //при null и undefined будет один и тот же результат
+      //Первое условие проверяет на "", второе на null и undefined
+       greeting = "Привет, мир! Меня зовут Аноним.";
+    }
+    else {
+       greeting = `Привет, мир! Меня зовут ${name}.`;
+    }
+    console.log(greeting);
+    return greeting;
 }
