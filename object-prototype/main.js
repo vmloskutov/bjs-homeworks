@@ -7,7 +7,17 @@ function initCheckBirthday() {
 }
 
 function checkBirthday(birthday) {
-    // код для задачи №1 писать здесь
+    const now = Date.now();
+
+    const birthdayArray = birthday.split(".");
+    date = new Date(birthdayArray[2], birthdayArray[1]-1, birthdayArray[0]);
+    date = +date;
+    
+    const diff = now - date;
+    const age = diff / 31556926000;
+
+    return age > 18 ? true : false;
+
 }
 
 function initPrintAnimalSound() {
