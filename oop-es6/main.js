@@ -1,11 +1,11 @@
 "use strict"
 class Weapon {
-  constructor(obj) {
-    this.name = obj.name;
-    this.attack = obj.attack;
-    this.durability = obj.durability;
-    this.range = obj.range;
-    this.originalDurability = obj.durability;
+  constructor() {
+    this.name = undefined;
+    this.attack = undefined;
+    this.durability = undefined;
+    this.range = undefined;
+    this.originalDurability = this.durability;
   }
 
   takeDamage(damage) {
@@ -15,6 +15,9 @@ class Weapon {
   }
 
   getDamage() {
+    console.log("____");
+    console.log(this.originalDurability);
+    console.log("____");
     if (this.durability <= this.originalDurability * 0.3 && this.durability != this.originalDurability){
       this.attack = this.attack / 2;
     }
@@ -31,89 +34,99 @@ class Weapon {
   }
 }
 
-const sword = new Weapon({
-  name: 'Меч',
-  attack: 25,
-  durability: 500,
-  range: 1,
-});
+class Sword extends Weapon {
+  constructor(){
+    super();
+    this.name = "Меч";
+    this.attack = 25;
+    this.durability = 500;
+    this.range = 1;
+    this.originalDurability = this.durability;
+  }
+}
 
-const ax = new Weapon({
-  name: 'Секира',
-  attack: 27,
-  durability: 800,
-  range: 1,
-});
+class Ax extends Sword {
+  constructor(){
+    super();
+    this.name = "Секира";
+    this.attack = 27;
+    this.durability = 800;
+    this.originalDurability = this.durability;
+  }
+}
 
-const arm = new Weapon({
-  name: 'Рука',
-  attack: 1,
-  durability: Infinity,
-  range: 1,
-});
+class Arm extends Weapon {
+  constructor(){
+    super();
+    this.name = "Рука";
+    this.attack = 1;
+    this.durability = Infinity;
+    this.range = 1;
+    this.originalDurability = this.durability;
+  }
+}
 
-const bow = new Weapon({
-  name: 'Лук',
-  attack: 10,
-  durability: 200,
-  range: 3,
-});
+class Bow extends Weapon {
+  constructor(){
+    super();
+    this.name = "Лук";
+    this.attack = 10;
+    this.durability = 200;
+    this.range = 3;
+    this.originalDurability = this.durability;
+  }
+}
 
-const longBow = new Weapon({
-  name: 'Длинный лук',
-  attack: 15,
-  durability: 200,
-  range: 4,
-});
+class LongBow extends Bow{
+  constructor(){
+    super();
+    this.name = "Длинный лук";
+    this.attack = 15;
+    this.range = 4;
+    this.originalDurability = this.durability;
+  }
+}
 
-const knife = new Weapon({
-  name: "Нож",
-  attack: 5,
-  durability: 300,
-  range: 1,
-});
+class Knife extends Weapon {
+  constructor(){
+    super();
+    this.name = "Нож";
+    this.attack = 5;
+    this.durability = 300;
+    this.range = 1;
+    this.originalDurability = this.durability;
+  }
+}
 
-const stick = new Weapon({
-  name: "Посох",
-  attack: 8,
-  durability: 300,
-  range: 2,
-});
+class Stick extends Weapon {
+  constructor(){
+    super();
+    this.name = "Посох";
+    this.attack = 8;
+    this.durability = 300;
+    this.range = 2;
+    this.originalDurability = this.durability;
+  }
+}
 
-const superStick = new Weapon({
-  name: "Посох Бури",
-  attack: 10,
-  durability: 300,
-  range: 3,
-});
+class SuperStick extends Bow{
+  constructor(){
+    super();
+    this.name = "Посох Бури";
+    this.attack = 10;
+    this.range = 3;
+    this.originalDurability = this.durability;
+  }
+}
 
+const bow = new Bow();
 
-
-
-
-
-
-//Проверки методов и пограничных значений
-console.log(sword);
-sword.takeDamage(5);
-console.log(sword.durability); // 5
-sword.takeDamage(50);
-console.log(sword.durability); // 0
-console.log(arm);
-arm.takeDamage(20);
-console.log(arm.durability); // Infinity
-console.log(bow);
-bow.takeDamage(20);
-console.log(bow.durability); // 180
-bow.takeDamage(200);
-console.log(bow.durability); // 0
-console.log(bow.durability); // 0
-console.log(bow.getDamage());
-console.log(bow.attack);// 0
-console.log(arm.durability); // Infinity
-console.log(arm.getDamage());
-console.log(arm.attack);// 1
-console.log(bow.durability); // 0
-console.log(bow.isBroken()); // true
-console.log(arm.durability); // Infinity
-console.log(arm.isBroken()); // false
+console.log(bow.name); // Лук
+console.log(bow.attack); // 10
+console.log(bow.durability); // 200
+console.log(bow.range); // 3
+bow.takeDamage(181);
+console.log(bow.durability);
+bow.getDamage();
+console.log(bow.attack);
+console.log(bow.isBroken());
